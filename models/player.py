@@ -1,25 +1,25 @@
 class Player:
     def __init__(self):
-        # Initialize player's chest (one slot for each round)
+        # Initialise le coffre du joueur (un emplacement pour chaque manche)
         self.mon_coffre = [0] * 5
-        # Current rubies in hand
+        # Rubis actuels en main
         self.mon_sac = 0
-        # Whether player is still in the current round
+        # Indique si le joueur est toujours actif dans la manche
         self.is_active = True
 
     def reset_for_round(self):
-        """Reset player for a new round"""
+        """Réinitialise le joueur pour une nouvelle manche"""
         self.is_active = True
         self.mon_sac = 0
 
     def leave_round(self, round_id):
-        """Player decides to leave the round"""
-        # Store current rubies in chest
+        """Le joueur décide de quitter la manche"""
+        # Stocke les rubis actuels dans le coffre
         self.mon_coffre[round_id] = self.mon_sac
-        # Mark as inactive and clear hand
+        # Marque comme inactif et vide la main
         self.is_active = False
         self.mon_sac = 0
 
     def get_total_score(self):
-        """Get total score from all rounds"""
+        """Calcule le score total de toutes les manches"""
         return sum(self.mon_coffre) 

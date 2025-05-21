@@ -1,98 +1,103 @@
-# Ruby Cave Game
+# Jeu de la Grotte aux Rubis
 
-A simple Python game where players collect rubies from a cave while avoiding traps. The game is designed to be easy to understand and modify.
+Un jeu simple en Python où les joueurs collectent des rubis dans une grotte tout en évitant les pièges.
 
-## Project Structure
+## Structure du Projet
 
 ```
 .
-├── constants.py           # Game settings and card definitions
-├── main.py               # Main game entry point
-├── models/               # Game objects
-│   └── player.py        # Player class
-├── strategies/           # Player strategies
-│   └── strategies.py    # Different ways players can play
-└── game/                # Game logic
-    └── game_manager.py  # Main game controller
+├── constants.py           # Configuration et cartes
+├── main.py               # Point d'entrée
+├── models/               # Objets du jeu
+│   └── player.py        # Classe Joueur
+├── strategies/           # Stratégies
+│   └── strategies.py    # Différentes façons de jouer
+└── game/                # Logique du jeu
+    └── game_manager.py  # Contrôleur principal
 ```
 
-## How to Play
+## Comment Jouer
 
-1. Run the game:
+1. Lancer le jeu:
    ```
    python main.py
    ```
 
-2. Enter the number of players when prompted
+2. Entrer le nombre de joueurs
 
-3. The game will play automatically with:
-   - Player 1 using the Basic Strategy
-   - Other players using the Random Strategy
+3. Le jeu se joue automatiquement:
+   - Joueur 1 utilise la Stratégie Basique
+   - Les autres joueurs utilisent la Stratégie Aléatoire
 
-## Game Rules
+## Règles du Jeu
 
-- The game has 5 rounds
-- Each round, players can collect rubies from the cave
-- Players must decide when to leave the cave:
-  - If they leave safely, they keep their rubies
-  - If they stay and a second trap appears, they lose all rubies
-- The player with the most rubies at the end wins
+- 5 manches
+- Les joueurs collectent des rubis
+- Les joueurs doivent décider quand quitter:
+  - Sortie sûre = garde les rubis
+  - Deuxième piège = perte des rubis
+- Le joueur avec le plus de rubis gagne
 
-## Card Types
+## Types de Cartes
 
-1. Ruby Cards (numbers):
-   - Give rubies to all active players
-   - Extra rubies stay in the cave
+1. Cartes Rubis (nombres):
+   - Donnent des rubis aux joueurs actifs
+   - Rubis restants restent dans la grotte
 
-2. Trap Cards:
-   - First trap: No effect
-   - Second trap: All active players lose their rubies
+2. Cartes Pièges:
+   - Premier piège: aucun effet
+   - Deuxième piège: perte des rubis
 
-3. Relic Cards:
-   - Special cards that give bonus points
-   - Only the last player leaving gets the relics
+3. Cartes Reliques:
+   - Donnent des points bonus
+   - Seul le dernier joueur sortant les obtient
 
-## Code Structure
+## Structure du Code
 
-### Player Class (`models/player.py`)
-- Manages player's rubies and status
-- Tracks rubies in hand and in chest
-- Handles leaving the cave
+### Classe Joueur
+- Gère les rubis et le statut
+- Suit les rubis en main et en coffre
+- Gère la sortie de la grotte
 
-### Strategies (`strategies/strategies.py`)
-1. Basic Strategy:
-   - Makes decisions based on:
-     - Number of cards played
-     - Number of traps
-     - Rubies on the ground
+### Stratégies
+1. Stratégie Basique:
+   - Décisions basées sur:
+     - Nombre de cartes jouées
+     - Nombre de pièges
+     - Rubis au sol
 
-2. Random Strategy:
-   - Makes simpler decisions based on:
-     - Current rubies in hand
-     - Number of cards left
-     - Round number
+2. Stratégie Aléatoire:
+   - Décisions simples basées sur:
+     - Rubis en main
+     - Cartes restantes
+     - Numéro de la manche
 
-### Game Manager (`game/game_manager.py`)
-- Controls the game flow
-- Manages rounds and turns
-- Handles card effects
-- Tracks scores
+### Gestionnaire de Jeu
+- Contrôle le déroulement
+- Gère les manches et tours
+- Gère les effets des cartes
+- Suit les scores
 
-## How to Modify
+## Comment Modifier
 
-1. To add a new strategy:
-   - Create a new class in `strategies.py`
-   - Add a `play` method that returns `True` to leave or `False` to stay
+1. Ajouter une stratégie:
+   ```python
+   class MaStrategie:
+       def play(self, mon_coffre, mon_sac, rubis_au_sol, id_manche, les_joueurs, tas_tri, defausse):
+           if mon_sac > 10:
+               return True
+           return False
+   ```
 
-2. To change game rules:
-   - Modify constants in `constants.py`
-   - Update card handling in `game_manager.py`
+2. Changer les règles:
+   - Modifier `constants.py`
+   - Mettre à jour `game_manager.py`
 
-3. To add new features:
-   - Add new methods to the `Player` class
-   - Update the `GameManager` to handle new features
+3. Ajouter des fonctionnalités:
+   - Ajouter des méthodes à `Player`
+   - Mettre à jour `GameManager`
 
-## Example Strategy
+## Exemple de Stratégie
 
 ```python
 class MyStrategy:

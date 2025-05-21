@@ -2,14 +2,14 @@ from game.game_manager import GameManager
 from strategies.strategies import BasicStrategy, RandomStrategy
 
 def main():
-    # Create game manager
+    # Crée le gestionnaire de jeu
     game = GameManager()
     
-    # Get number of players
+    # Demande le nombre de joueurs
     nb_players = int(input("Nombre de joueurs : "))
     game.create_players(nb_players)
     
-    # Create strategies for each player
+    # Crée les stratégies pour chaque joueur
     strategies = []
     for i in range(nb_players):
         if i == 0:
@@ -17,7 +17,7 @@ def main():
         else:
             strategies.append(RandomStrategy())
     
-    # Play the game
+    # Lance la partie
     game.play_game(strategies)
 
 if __name__ == '__main__':
